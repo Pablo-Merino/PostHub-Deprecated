@@ -1,0 +1,28 @@
+
+%a{:href=>"https://twitter.com/#{@data[:screen_name]}", :class=>"twitter-follow-button", "data-show-count"=>"false"}= "Follow @#{@data[:screen_name]}"
+%script
+:javascript
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+%div{:style=>"margin:20px"}
+- if @posts.nil?
+	- if session[:screen_name] == @data[:screen_name]
+		%h3 
+			Why you don't 
+			%a{:href=>"http://#{request.domain}/post"}= "write"
+			your first post?
+	- else
+		%h3= "We're trying to get #{@data[:screen_name]} to write a post, please check back soon!"
+- else
+
+	- @posts.each do |post|
+
+		.well
+			%h3
+				%a{:href=>"/#{post[:postID]}"}= post['title']
+				- if !session[:twitter_user].nil? && session[:subdomain] == request.subdomain
+					%a{:class=>"close", :href=>"/#{post[:postID]}/destroy"}= "&times;".html_safe
+			.content
+				- if post['content'].length >= 100
+					= RDiscount.new(post['content'][0..97]+"...").to_html.html_safe
+				- else
+					= RDiscount.new(post['content']).to_html.html_safe

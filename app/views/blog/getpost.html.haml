@@ -1,0 +1,44 @@
+.post
+	- @post.each do |post|
+		%h2
+			= post['title']
+			%small= "created on #{post[:created_at].strftime("%m/%d/%Y")}"
+		.content
+			= RDiscount.new(post['content']).to_html.html_safe
+		%div{:style=>"margin:20px"}
+		%a{:href=>"https://twitter.com/share", :class=>"twitter-share-button", "data-via"=>"#{session[:screen_name]}", "data-text"=>post['title']}= "Tweet"
+
+		%script
+		:javascript
+			!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	.comments
+		.row
+			.span5{:style=>"margin-right:50px;"}
+				%h3 Send a comment!
+				%br/
+				%form{ :action => "#{request.url}/comment", :method => "post"}
+					%input{:type=>"hidden", :name=>"authenticity_token", :value=>form_authenticity_token.to_s}
+					%input{:type => "text", :name => "authorName", :placeholder=>"What's your name?", :style=>"width:500px;"}
+					%br/
+					%textarea{:style=>"width:500px;max-width:500px;", :name=>"commentContent", :placeholder=>"Your thoughts here"}
+					%br/
+					%input{:type => "submit", :value => "Send", :class => "btn btn-primary"}
+
+				- unless session[:error].nil?
+					%ul{:class=>"errorlist"}
+						- session[:error].each do |value|
+							- unless value.nil?
+								%li= "Error: #{value}"
+								- session[:error]=nil
+			.span5
+				%h3 Comments
+				- unless @comments.empty?
+					- @comments.each do |comment|
+						%div{:class=>"well comments"}
+							%h4
+								=comment[:author]
+								%small= "on #{comment[:created_at].strftime("%m/%d/%Y")}"
+							%p= "#{comment[:content]}"
+				- else
+					%h4 No comments... yet
+				

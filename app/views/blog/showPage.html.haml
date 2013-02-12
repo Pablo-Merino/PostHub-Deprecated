@@ -1,0 +1,8 @@
+.pageView
+	%h2
+		= @pageData[:title]
+		%small= "by #{@pageData[:author]}"
+	%p= RDiscount.new(@pageData[:content]).to_html.html_safe
+
+	- if !session[:twitter_user].nil? && session[:subdomain] == request.subdomain
+		%a{:style=>"color:#993333 !important",:href=>"/p/#{@pageData[:slug]}/destroy"}= "Destroy page"

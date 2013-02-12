@@ -1,0 +1,50 @@
+%h2
+	%span{:style=>"color:#0066ff"}= "Welcome"
+	to your dashboard, 
+	%a{:href=>"http://twitter.com/#{@username}", :style=>"color:#0066ff"}
+		="@#{@username}"
+%br/
+%br/
+
+%h2{:style=>"color:#333333; font-size:24px !important"}
+	%b{:style=>"color:#333333"}="Information."
+%p
+	Name
+	&nbsp;
+	%span{:style=>"color:#0066ff"}="#{@blogname}"
+%p 
+	Post count
+	&nbsp;
+
+	- if @postNumber.nil?
+		%span{:style=>"color:#0066ff"}="0"
+	- else
+		%span{:style=>"color:#0066ff"}="#{@postNumber}"
+%p 
+	Page count
+	&nbsp;
+
+	- if @pageNumber.nil?
+		%span{:style=>"color:#0066ff"}="0"
+	- else
+		%span{:style=>"color:#0066ff"}="#{@pageNumber}"
+%br/
+%br/
+
+%h2{:style=>"color:#333333;  font-size:24px !important"}
+	%b{:style=>"color:#333333;"}="Account."
+%p
+	Name
+	&nbsp;
+	%a{:href=>"http://twitter.com/#{@username}", :style=>"color:#0066ff"}
+		="#{@username}"
+
+%p
+	Domain
+	&nbsp;
+	%a{:href=>"http://#{@blogsubdomain}", :style=>"color:#0066ff"}
+		="#{@blogsubdomain}"
+%br/
+%p
+	Actually,
+	%a{:href=>"/kill", :class=>"kill", :style=>"color:#993333 !important"}= "I don't like my blog."

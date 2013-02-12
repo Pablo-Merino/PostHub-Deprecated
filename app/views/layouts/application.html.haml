@@ -1,0 +1,87 @@
+!!! 5
+%html{:lang => "en"}
+	%head
+		%meta{:charset => "utf-8"}
+		%title= "PostHub"
+		%meta{:name=>"viewport", :content=>"width=device-width, initial-scale=1.0"}
+		%meta{:name=>"apple-mobile-web-app-capable", :content=>"yes"}
+		%meta{:name=>"apple-mobile-web-app-status-bar-style", :content=>"default"}
+
+		= csrf_meta_tags
+		= javascript_include_tag :application
+
+		= stylesheet_link_tag "application", :media => "all"
+
+	%body
+		.container
+			%h1{:class=>"title"}
+				- if request.subdomain.blank?
+
+					%a{:href=>"http://#{request.domain}"}= "PostHub <small>beta</small>".html_safe
+				- else
+					- case @subdomain
+					- when ""
+					- when "www"
+						%a{:href=>"http://#{request.domain}"}= "PostHub <small>beta</small>".html_safe
+					- else
+						- case @data.nil?
+						- when true
+							- if !@blogName.blank? && !@userName.blank?
+								%a{:href=>"/"}= "#{@blogName} <small>by #{@userName}</small>".html_safe
+							- else
+
+								%a{:href=>"http://#{request.domain}"}= "PostHub <small>beta</small>".html_safe
+						- else
+							%a{:href=>"/"}= "#{@data[:blog_name]} <small>by #{@data[:screen_name]}</small>".html_safe
+
+
+
+			.menu
+				- if !session[:is_reg].nil? && session[:is_reg] != 1
+					%a{:href=>"http://#{request.domain}/logout"}= "Logout (@#{session[:twitter_user]['screen_name']})"
+				- else
+					- if !session[:twitter_user].nil?
+						%a{:href=>"http://#{request.domain}/post"}= "New  post"
+						&nbsp;&nbsp;&nbsp;
+						%a{:href=>"http://#{request.domain}/page"}= "New  page"
+						&nbsp;&nbsp;&nbsp;
+						%a{:href=>"http://#{request.domain}/dashboard"}= "Dashboard"
+						&nbsp;&nbsp;&nbsp;
+						%a{:href=>"http://#{request.domain}/logout"}= "Logout (@#{session[:twitter_user]['screen_name']})"
+
+					- else
+						%a{:href=>"http://#{request.domain}/login"}= "Login with Twitter"
+			.hero-unit
+				- if !request.subdomain.empty?
+					- if request.subdomain != "api"
+						- if File.dirname(request.path) != "/p"
+							%h3{:class=>"pagesTitle"}
+								%a{:href=>"#", :id=>"togglePages"}= "Pages"
+							.userPages
+								%ul
+									- unless @page.empty?
+										- @page.each do |dataD|
+											%li
+												%a{:href=>"/p/#{dataD[:slug]}"}= "#{dataD[:title]}"
+									- else
+										%small This user has no pages
+								
+				= yield
+				%div{:style=>"margin:10px"}
+				- [:notice, :error, :success, :info].each do |key|
+					- unless flash[key].blank?
+						%p{ :class => "alert alert-#{key}" }= flash[key]
+
+				
+			%footer
+				%p{:class=>"copyright"}
+					Copyright
+					%a{:href=>"http://studio182.net", :style=>"color:#336699"}= "Studio 182"
+					\-
+					= Time.new.year
+				%div{:class=>"links"}
+					%a{:href=>"http://#{request.domain}/about"}= "About"
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					%a{:href=>"http://#{request.domain}/help"}= "Help"
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					%a{:href=>"http://#{request.domain}/directory"}= "Directory"

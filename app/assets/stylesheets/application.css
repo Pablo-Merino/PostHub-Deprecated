@@ -1,0 +1,315 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+body {
+	font-size: 18px !important;
+	padding-top: 20px;
+}
+
+* {
+	font-smooth: always;
+	-webkit-font-smoothing: antialiased;
+}
+.menu {
+
+	display: inline;
+	float: right;
+	margin-bottom:15px;
+}
+.hero-unit {
+	clear: both;
+	padding:30px !important;
+	text-align: left;
+}
+.hero-unit p {
+	font-weight: 400 !important;
+}
+.hero-unit i {
+	font-weight: 500 !important;
+}
+.hero-unit a {
+	color:#06F !important;
+}
+.hero-unit a:hover {
+	text-decoration: underline !important;
+
+	-webkit-transition:all 0.3s ease-in;  
+	-moz-transition:all 0.3s ease-in;  
+	-o-transition:all 0.3s ease-in;  
+	transition:all 0.3s ease-in;
+}
+.hero-unit h1 {
+	font-size: 40px !important;
+}
+
+.dash, .newBlog, .newPost, .newPage {
+	text-align: left;
+}
+.index {
+	text-align: center;
+}
+.post {
+	text-align: left !important;
+}
+.title {
+	margin-bottom: -30px;	
+	margin-right:10px;
+}
+.container {
+	font-weight: bold;
+}
+.preview {
+	border:1px solid #ccc;
+	border-radius:5px;
+	padding:15px;
+	word-wrap:break-word;
+}
+.content * {
+	font-size:17px !important;
+	font-weight: 400 !important;
+}
+ul {
+	list-style: none !important;
+}
+ul li {
+	font-weight: 400 !important;
+}
+ul li::before {
+	content: "- " !important;
+}
+.well h3 {
+	font-size: 20px;
+}
+.content {
+	margin-top: 10px;
+	word-wrap:break-word;
+}
+.well {
+	text-align: left;
+}
+a {
+	color:#336699 !important;
+	text-decoration: none;
+}
+a:hover {
+	color:#06F !important;
+	-webkit-tap-highlight-color: #06F;
+	-webkit-transition:color 0.3s ease-in;  
+	-moz-transition:color 0.3s ease-in;  
+	-o-transition:color 0.3s ease-in;  
+	transition:color 0.3s ease-in;
+
+	text-decoration: none !important;
+}
+.title a {
+	color:black !important;
+}
+.title a:hover {
+	color:#336699 !important;
+	-webkit-tap-highlight-color: #336699;
+	-webkit-transition:color 0.3s ease-in;  
+	-moz-transition:color 0.3s ease-in;  
+	-o-transition:color 0.3s ease-in;  
+	transition:color 0.3s ease-in;
+}
+.kill:hover {
+	color:red !important;
+	-webkit-tap-highlight-color: red;
+	-webkit-transition:color 0.3s ease-in;  
+	-moz-transition:color 0.3s ease-in;  
+	-o-transition:color 0.3s ease-in;  
+	transition:color 0.3s ease-in;
+}
+h2 a {
+	color:#06F !important;
+}
+h2 a:hover {
+	color:#336699 !important;
+	-webkit-tap-highlight-color: #336699;
+	-webkit-transition:color 0.3s ease-in;  
+	-moz-transition:color 0.3s ease-in;  
+	-o-transition:color 0.3s ease-in;  
+	transition:color 0.3s ease-in;
+}
+footer * {
+	font-size:18px !important;
+	font-weight: bold !important;
+}
+footer a {
+	color:#336699 !important;
+}
+footer a:hover {
+	color:#06F !important;
+	-webkit-tap-highlight-color: #06F;
+	-webkit-transition:color 0.3s ease-in;  
+	-moz-transition:color 0.3s ease-in;  
+	-o-transition:color 0.3s ease-in;  
+	transition:color 0.3s ease-in; 
+}
+.well *, .post * {
+	text-align:left !important;
+}
+.comments {
+	margin-top: 20px;
+
+
+}
+.comments * {
+	word-wrap:break-word !important;
+}
+.errorlist li {
+	font-size:15px !important;
+}
+.userPages {
+	display: none;
+}
+.userPages li {
+	display: inline;
+	list-style-type: none;
+	padding-right: 20px;
+}
+
+.userPages li::before {
+	content:"" !important;
+}
+
+.pageView li::before {
+	content:"" !important;
+}
+
+.pagesTitle {
+	margin-bottom:5px;
+}
+.pageView * {
+	text-align: left !important;
+}
+footer .copyright {
+	float: left;
+}
+footer .links {
+	float: right;
+}
+
+/* Media queries.. */
+
+/* Mobile Layout: 320px */
+   
+@media only screen and (max-width: 767px) {
+	body {
+		font-size: 14px !important;
+		padding-top: 10px !important;
+	}
+	.menu {
+		text-align: center;
+		width: 100%;
+	}
+	.container {
+		padding: 0 !important;
+		text-align: center;
+	}
+	.content * {
+		font-size: 14px !important;
+	}
+	.title {
+		display: block;
+		margin-bottom:0px;
+		width: 100%;
+	}
+	.hero-unit {
+		border-radius: 0px !important;
+		-webkit-border-radius: 0px !important;
+		-moz-border-radius: 0px !important;
+		line-height: 4px !important;
+		margin-top: 30px;
+		padding: 6px !important;
+	}
+	.hero-unit p {
+		font-size: 14px !important;
+		line-height: 18px !important;
+	}
+	h2, h2 b {
+		font-size: 18px !important;
+	}
+	
+	.newPost br {
+		display: none;
+	}
+	.row {
+		margin-top: 10px !important;
+	}
+	.span5 {
+		margin: auto !important;
+	}
+	input, textarea {
+		width: 100% !important;
+	}
+	.input-append .span2 {
+		width: 90% !important;
+	}
+	#markdownEditor {
+		width: 100% !important;
+	}
+	.checkbox input {
+		width: 10px !important;
+	}
+	.kill:hover {
+	color:red !important;
+	-webkit-tap-highlight-color: red;
+	-webkit-transition:color 0.3s ease-in;  
+	-moz-transition:color 0.3s ease-in;  
+	-o-transition:color 0.3s ease-in;  
+	transition:color 0.3s ease-in;
+	}
+	footer {
+		padding-left: 10px;
+		padding-right: 10px;
+		text-align: center;
+	}
+	footer, footer * {
+		font-size: 12px !important;
+	}
+	footer .copyright, footer .links {
+		float: none !important;
+	}
+}
+   
+/* Wide Mobile Layout: 480px. */
+   
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	body {
+		font-size: 14px !important;
+		padding-top: 25px !important;
+	}
+	.container {
+		padding: 0 !important;
+		text-align: center;
+	}
+	.hero-unit {
+		border-radius: 0 !important;
+		-webkit-border-radius: 0 !important;
+		-moz-border-radius: 0 !important;
+		line-height: 10px;
+		margin-top: 25px;
+		padding: 20px !important;
+	}
+	.hero-unit p {
+		font-size: 15px !important;
+		line-height: 18px !important;
+	}
+	.kill:hover {
+	color:red !important;
+	-webkit-tap-highlight-color: red;
+	-webkit-transition:color 0.3s ease-in;  
+	-moz-transition:color 0.3s ease-in;  
+	-o-transition:color 0.3s ease-in;  
+	transition:color 0.3s ease-in;
+	}
+	footer, footer * {
+		font-size: 15px !important;
+	}
+}

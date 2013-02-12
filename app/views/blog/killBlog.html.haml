@@ -1,0 +1,6 @@
+%center
+	%h3 Do you really want to remove your blog?
+	%br/
+	%form{ :action => "/kill", :method => "post"}
+		%input{:type=>"hidden", :name=>"authenticity_token", :value=>form_authenticity_token.to_s}
+		%input{:type=>"submit", :class=>"btn btn-large btn-danger", :value=>"Yes, remove it!"}

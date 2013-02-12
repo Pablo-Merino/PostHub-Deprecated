@@ -1,0 +1,30 @@
+.newPost
+	%h1{:style=>"margin-bottom:15px"}= "New Post"
+	- unless session[:error].nil?
+		%div{:class=>"alert alert-error", :style=>"font-size:13px; font-weight:normal;"}
+			%strong Please correct the following errors
+			%br
+			- session[:error].each do |value|
+				- unless value.nil?
+					%li= "#{value}"
+					- session[:error]=nil
+	.row-fluid
+		.span5{:style=>"margin-right:150px"}
+			%form{ :action => "/post", :method => "post"}
+				%input{:type=>"hidden", :name=>"authenticity_token", :value=>form_authenticity_token.to_s}
+				%input{:type => "text", :name => "postTitle", :placeholder=>"Post title...", :style=>"width:500px;", :value=>"#{params[:postTitle]}"}
+				
+				%br/				
+				%textarea{:style=>"width:500px;max-width:500px;height:300px", :id=>"markdownEditor", :name=>"postContent", :placeholder=>"Post content..."}#{params[:postContent]}
+				
+				%br/
+				%br/
+				%label{:class=>"checkbox"}
+					%input{:type=>"checkbox", :name=>"tweetBox"}
+					Tweet post
+				%br/
+				%input{:type => "submit", :value => "Send", :class => "btn btn-primary"}
+
+		.span5
+			%div{:class=>"preview"}
+				%p Post Preview

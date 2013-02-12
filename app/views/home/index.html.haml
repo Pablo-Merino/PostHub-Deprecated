@@ -1,0 +1,19 @@
+.index
+	%p 
+		A 
+		%i simple, easy, hosted
+		blogging platform with 
+		%i Twitter integration.
+		%br
+		%br
+		Simply 
+		%i login 
+		with Twitter, 
+		%i name
+		your blog and
+		%i start
+		blogging and broadcasting your thoughts on Twitter!
+	- if session[:twitter_user].nil?
+		%br
+		%i
+			%a{:href=>"/login", :style=>""}= "Why don't you give it a go?"		
